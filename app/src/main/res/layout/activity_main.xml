@@ -10,4 +10,14 @@
         android:id="@+id/recycle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
+    <Button
+        android:id="@+id/btn_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:text="Add"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
