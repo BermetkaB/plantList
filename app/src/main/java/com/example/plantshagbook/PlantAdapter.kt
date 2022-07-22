@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.plantshagbook.databinding.PlantItemLayoutBinding
 
 class PlantAdapter: RecyclerView.Adapter<PlantAdapter.PlantViewHolder>() {
-    private var planList= emptyList<PlantModel>()
+    private var planList= mutableListOf<PlantModel>()
 
     class PlantViewHolder(item: View):RecyclerView.ViewHolder(item){
         val binding=PlantItemLayoutBinding.bind(item)
@@ -35,10 +35,15 @@ val view=LayoutInflater.from(parent.context).inflate(R.layout.plant_item_layout,
     override fun getItemCount(): Int {
            return planList.size   }
 
-   // fun addPlant(plant: PlantModel){
-    //    planList.add(plant)
-    //    notifyDataSetChanged()
-   fun setData( newList:List<PlantModel>){
-       this.planList = newList
+
+   fun setData( list: MutableList<PlantModel>){
+       this.planList = list
        notifyDataSetChanged()
-}}
+}
+
+    fun getData():MutableList<PlantModel>{
+    return planList
+
+}
+
+}

@@ -10,6 +10,7 @@ import com.example.plantshagbook.databinding.PlantItemLayoutBinding
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private val adapter=PlantAdapter()
+    private var list: MutableList<PlantModel>?=null
     private  val imageIdList=listOf(
             R.drawable.img,
             R.drawable.img_1,
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        list= mutableListOf()
         init()
     }
 
@@ -29,10 +31,18 @@ class MainActivity : AppCompatActivity() {
             recycle.layoutManager= GridLayoutManager(this@MainActivity,3)
             recycle.adapter=adapter
             btnAdd.setOnClickListener {
-                if (index>4) index=0
-               val plant=PlantModel(imageIdList[index],"PLANT $index")
-                adapter.addPlant(plant)
-                index++
+                if (index<5) {
+                    val plant=PlantModel(imageIdList[index],"PLANT $index")
+                    list?.add(plant)
+                    list?.let { it1 -> adapter.setData(it1)
+                    recycle.smoothScrollToPosition(adapter.getData().size-1)
+                    }
+                    index++
+                    if (index==5){
+                        index=0
+                    }
+                }
+
             }
         }
     }
